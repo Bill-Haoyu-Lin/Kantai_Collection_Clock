@@ -6,7 +6,7 @@ import time
 from random import *
 
 root = Tk()
-root.title(" It's just a trail")
+root.title(" Kantai Collection Clock")
 
 def check_time():
     global idle_times
