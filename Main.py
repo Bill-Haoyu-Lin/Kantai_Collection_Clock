@@ -49,9 +49,8 @@ def intro_char(char_list, char_pos):
     intro_voice = vlc.MediaPlayer("sounds" + char_list[char_pos] + "_Intro.mp3")
     intro_voice.play()
 
-
 char_pos = -1
-char_list = ['\Верный','\Warspite','\Kawakaze','\Yura','\Ark_Royal']
+char_list = ['Верный','Warspite','Kawakaze','Yura','Ark_Royal']
 idle_times = [randint(5, 25),randint(35, 55)]
 
 intro_voice = vlc.MediaPlayer(r"sounds/TitleCallA" + str(randint(1, 20)) + ".mp3")
@@ -65,16 +64,26 @@ myLabel.grid(row = 0, column = 0)
 check_time()
 
 
-button_pop = Button(root, text="switch character", padx=10, pady=5, command=change_char)
+button_pop = Button(root, text="Next character", padx=10, pady=5, command=change_char)
 button_pop.grid(row =1, column=0,columnspan = 1,padx = 10, pady= 10)
 
 
 button_quit = Button(root, text="Quit", padx=10, pady=5, command=root.quit)
 button_quit.grid(row=1, column=1, columnspan=4, padx=10, pady=10)
 
+
+button_check_idle = Button(root, text="check idle voice", padx=10, pady=5, command=check_idle)
+button_check_idle.grid(row =1, column=6,columnspan = 10,padx = 60, pady= 10)
+
+
 my_img = ImageTk.PhotoImage(Image.open('Characters\logo.png'))
 Label_img = Label(root, image=my_img)
-Label_img.grid(row=2, column=0,columnspan = 3,padx = 10, pady= 10)
+Label_img.grid(row=2, column=0,columnspan = 3,rowspan = 10, padx = 10, pady= 10)
+
+characters = StringVar()
+menu = OptionMenu(root,characters,*char_list)
+menu.grid(row=2, column=6,columnspan = 10,padx = 60, pady = 10)
+characters.trace("w", switch_char)
 
 root.mainloop()
 
